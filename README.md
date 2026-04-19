@@ -2,16 +2,16 @@
 
 ## 📌 Overview
 
-This project implements a dynamic pricing system for urban parking spaces using real-time demand factors. The goal is to optimize parking utilization by adjusting prices based on occupancy, queue length, traffic conditions, and nearby competition.
+This project implements a dynamic pricing system for urban parking spaces based on real-time demand factors such as occupancy, queue length, traffic conditions, and competition. The objective is to optimize parking utilization and reduce congestion through adaptive pricing.
 
 ---
 
 ## 🎯 Objectives
 
-* Dynamically adjust parking prices in real-time
-* Avoid overcrowding and underutilization
-* Incorporate demand and competitive factors
-* Simulate real-world pricing strategies
+* Dynamically adjust parking prices based on demand
+* Prevent overcrowding and underutilization
+* Incorporate real-world features like traffic and queue
+* Simulate intelligent pricing strategies
 
 ---
 
@@ -19,12 +19,12 @@ This project implements a dynamic pricing system for urban parking spaces using 
 
 ### 🔹 Model 1: Baseline Linear Model
 
-* Price increases linearly with occupancy
-* Serves as a simple reference model
+* Price increases with occupancy
+* Simple and stable reference model
 
 ### 🔹 Model 2: Demand-Based Pricing
 
-Demand is calculated using:
+Demand is computed using:
 
 * Occupancy rate
 * Queue length
@@ -32,28 +32,64 @@ Demand is calculated using:
 * Special day indicator
 * Vehicle type
 
-📈 Price is updated using normalized demand:
-
-```
+**Pricing Function:**
 Price = BasePrice × (1 + λ × Demand)
-```
 
 ---
 
-### 🔹 Model 3: Competitive Pricing Model
+### 🔹 Model 3: Competitive Pricing
 
-* Considers nearby parking lots using latitude & longitude
-* Adjusts pricing based on competitor prices
-* Helps maintain competitiveness in high-demand areas
+* Uses location (latitude & longitude)
+* Adjusts price based on nearby parking lots
+* Ensures competitive and realistic pricing
 
 ---
 
-## 📊 Features
+## 📊 Results & Insights
 
-* Real-time-like simulation using streaming logic
-* Dynamic price updates at each time step
-* Competitive pricing adjustments
-* Data visualization using Bokeh
+### 🔹 Price Behavior
+
+* Model 1 average price: **~12.55**
+* Model 2 average price: **~11.99**
+* Model 2 shows greater variation due to multiple demand factors
+
+### 🔹 Demand Patterns
+
+* Average occupancy: **~50%**
+* Peak occupancy: **>90%**
+* Average queue length: **~4.6 vehicles**
+
+### 🔹 Feature Impact
+
+* Higher occupancy and queue → higher prices
+* Traffic (avg ~0.8) slightly reduces demand
+* Special days (~15%) increase demand spikes
+
+### 🔹 Price Stability
+
+* Model 1 range: **~10.5 – 14.7**
+* Model 2 range: **~10.0 – 15.0**
+* No extreme fluctuations → smooth pricing behavior
+
+### 🔹 Overall Outcome
+
+* System adapts effectively to demand changes
+* Improves parking utilization
+* Prevents congestion through pricing control
+
+---
+
+## 📁 Project Structure
+
+Capstone-Project/
+
+├── Dynamic_Pricing_Parking.ipynb
+├── dataset.csv
+├── results/
+│   ├── model1_prices.csv
+│   └── model2_prices.csv
+├── README.md
+└── problem statement.pdf
 
 ---
 
@@ -61,56 +97,35 @@ Price = BasePrice × (1 + λ × Demand)
 
 * Python
 * Pandas, NumPy
-* Pathway (for streaming simulation)
-* Bokeh (for visualization)
-
----
-
-## 📈 Results & Insights
-
-* Prices increase with higher occupancy and queue length
-* Traffic conditions influence demand negatively
-* Competitive pricing prevents overpricing and improves utilization
-* System adapts smoothly without abrupt price changes
+* Pathway (stream simulation)
+* Bokeh / Matplotlib (visualization)
 
 ---
 
 ## 🚀 How to Run
 
-1. Open the notebook in Google Colab
-2. Upload `dataset.csv` when prompted
-3. Run all cells sequentially
-4. Observe dynamic pricing outputs and visualizations
-
----
-
-## 📁 Project Structure
-
-```
-Capstone-Project/
-│
-├── Dynamic_Pricing_Parking.ipynb
-├── dataset.csv
-└── README.md
-```
+1. Open notebook in Google Colab
+2. Upload `dataset.csv`
+3. Run all cells
+4. View pricing outputs and plots
 
 ---
 
 ## 🧠 Key Assumptions
 
-* Higher occupancy indicates higher demand
+* Higher occupancy → higher demand
 * Queue length represents unmet demand
-* Traffic affects accessibility and reduces demand
-* Competitor prices influence user choice
+* Traffic reduces accessibility
+* Competitor pricing influences user decisions
 
 ---
 
 ## 🔮 Future Improvements
 
-* True real-time deployment using streaming APIs
-* Advanced ML models for demand prediction
-* Integration with navigation/routing systems
+* Real-time deployment using streaming APIs
+* Machine learning-based demand prediction
 * Reinforcement learning for pricing optimization
+* Integration with navigation systems
 
 ---
 
